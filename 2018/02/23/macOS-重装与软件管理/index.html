@@ -1,0 +1,42 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="孟凡泽的博客"><title>macOS 重装与软件管理 | Meng Fanze's Blog</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/7.0.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">macOS 重装与软件管理</h1><a id="logo" href="/.">Meng Fanze's Blog</a><p class="description">C++、Web、Game</p></div><div id="nav-menu"><a href="/." class="current"><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div></div><div id="layout" class="pure-g"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">macOS 重装与软件管理</h1><div class="post-meta">Feb 23, 2018</div><div class="post-content"><p>为了保持 macOS 系统环境的整洁，养成良好、高效的软件管理和使用习惯，决定在过年之际重装一次 macOS。日后在 Mac 使用过程中保持以下几个原则：</p>
+<ul>
+<li>不安装破解软件，付费或替换为同类免费软件。（可是 Photoshop ……）</li>
+<li>所有系统权限需求弱的软件使用 Mac App Store 安装和管理。（除 Evernote，记得 MAS 版不支持代码块）</li>
+<li>桌面程序使用 Homebrew Cask 安装和管理。</li>
+<li>命令行程序使用 Homebrew 安装和管理。</li>
+<li>使用 pyenv 和 nvm 安装和管理 python 和 node.js 的多版本。</li>
+<li>学习和利用 docker 做开发环境的搭建。</li>
+<li>利用 iCloud、Github 对文件和程序配置文件作备份，对有跨平台使用需求的使用 Google Drive。</li>
+<li>再次重装系统时需要注意 QQ、微信、企业QQ 的聊天记录迁移。</li>
+</ul>
+<h1 id="MacOS-的重装"><a href="#MacOS-的重装" class="headerlink" title="MacOS 的重装"></a>MacOS 的重装</h1><p>官方文档：<a href="https://support.apple.com/zh-cn/HT204904">https://support.apple.com/zh-cn/HT204904</a></p>
+<p>大致步骤就是：</p>
+<ol>
+<li><code>⌘R</code>开机进恢复模式。</li>
+<li>抹掉 macOS 所在宗卷。</li>
+<li>重新安装 macOS。（需要联网和等待）</li>
+</ol>
+<p>值得一提的是，系统安装过程中，利用无线网 -&gt; 加入其他网络可以让菜单栏焦点回到桌面上，然后打开终端，这时可以使用一些辅助命令，如：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df -h                       <span class="comment"># 查看硬盘宗卷信息</span></span><br><span class="line">caffeinate -u -t 14400      <span class="comment"># 阻止系统休眠</span></span><br></pre></td></tr></table></figure>
+<p>重装后，正常设置系统、iCloud 账户。</p>
+<h1 id="最高优先级"><a href="#最高优先级" class="headerlink" title="最高优先级"></a>最高优先级</h1><h2 id="配置-git"><a href="#配置-git" class="headerlink" title="配置 git"></a>配置 git</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name &quot;Meng Fanze&quot;</span><br><span class="line">git config --global user.email ifanze@outlook.com</span><br></pre></td></tr></table></figure>
+<h2 id="安装-oh-my-zsh"><a href="#安装-oh-my-zsh" class="headerlink" title="安装 oh-my-zsh"></a>安装 oh-my-zsh</h2><p><a href="https://github.com/robbyrussell/oh-my-zsh/">https://github.com/robbyrussell/oh-my-zsh/</a><br><a href="https://github.com/zsh-users/zsh-autosuggestions/">https://github.com/zsh-users/zsh-autosuggestions/</a></p>
+<p>配置文件恢复：<code>.zshrc</code>、<code>.zsh_history</code></p>
+<h2 id="安装-homebrew"><a href="#安装-homebrew" class="headerlink" title="安装 homebrew"></a>安装 homebrew</h2><p><a href="https://github.com/Homebrew/brew/">https://github.com/Homebrew/brew/</a></p>
+<h1 id="Mac-App-Store-列表"><a href="#Mac-App-Store-列表" class="headerlink" title="Mac App Store 列表"></a>Mac App Store 列表</h1><ul>
+<li>WeChat</li>
+<li>MWeb</li>
+<li>1Password</li>
+</ul>
+<h1 id="Homebrew-Cask-列表"><a href="#Homebrew-Cask-列表" class="headerlink" title="Homebrew Cask 列表"></a>Homebrew Cask 列表</h1><ul>
+<li>docker</li>
+<li>evernote</li>
+<li>iterm2</li>
+<li>surge</li>
+<li>steam</li>
+</ul>
+<h1 id="Homebrew-列表"><a href="#Homebrew-列表" class="headerlink" title="Homebrew 列表"></a>Homebrew 列表</h1><ul>
+<li>mas</li>
+<li>nvm</li>
+</ul>
+</div><div class="tags"></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" class="search-form"><input type="text" name="q" maxlength="20" placeholder="Search"/><input type="hidden" name="sitesearch" value="http://ifanze.cn"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/02/23/macOS-重装与软件管理/">macOS 重装与软件管理</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="http://www.example1.com/" title="site-name1" target="_blank">site-name1</a><ul></ul><a href="http://www.example2.com/" title="site-name2" target="_blank">site-name2</a><ul></ul><a href="http://www.example3.com/" title="site-name3" target="_blank">site-name3</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2018 <a href="/." rel="nofollow">Meng Fanze's Blog.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a id="rocket" href="#top" class="show"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/3.1.20/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/3.1.20/jquery.fancybox.min.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
