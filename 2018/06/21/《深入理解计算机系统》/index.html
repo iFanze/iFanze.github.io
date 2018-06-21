@@ -1,0 +1,362 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="孟凡泽的博客"><title>《深入理解计算机系统》 | Meng Fanze's Blog</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/7.0.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">《深入理解计算机系统》</h1><a id="logo" href="/.">Meng Fanze's Blog</a><p class="description">C++、Web、Game</p></div><div id="nav-menu"><a href="/." class="current"><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div></div><div id="layout" class="pure-g"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">《深入理解计算机系统》</h1><div class="post-meta">Jun 21, 2018<span> | </span><span class="category"><a href="/categories/笔记/">笔记</a></span></div><div class="clear"><div id="toc" class="toc-article"><div class="toc-title">文章目录</div><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-计算机系统漫游"><span class="toc-text">1 计算机系统漫游</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-信息就是位-上下文"><span class="toc-text">1.1 信息就是位+上下文</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-程序被其他程序翻译成不同的格式"><span class="toc-text">1.2 程序被其他程序翻译成不同的格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3-了解编译系统如何工作是大有益处的"><span class="toc-text">1.3 了解编译系统如何工作是大有益处的</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-4-处理器读并解释存储在内存中的指令"><span class="toc-text">1.4 处理器读并解释存储在内存中的指令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-1-系统的硬件组成"><span class="toc-text">1.4.1 系统的硬件组成</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-2-运行Hello程序"><span class="toc-text">1.4.2 运行Hello程序</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-5-高速缓存至关重要"><span class="toc-text">1.5 高速缓存至关重要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-6-存储设备形成层次结构"><span class="toc-text">1.6 存储设备形成层次结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-7-操作系统管理硬件"><span class="toc-text">1.7 操作系统管理硬件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-7-1-进程"><span class="toc-text">1.7.1 进程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-7-2-线程"><span class="toc-text">1.7.2 线程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-7-3-虚拟内存"><span class="toc-text">1.7.3 虚拟内存</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-7-4-文件"><span class="toc-text">1.7.4 文件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-8-系统之间利用网络通信"><span class="toc-text">1.8 系统之间利用网络通信</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-9-重要主题"><span class="toc-text">1.9 重要主题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-9-1-Amdahl定律"><span class="toc-text">1.9.1 Amdahl定律</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-9-2-并发和并行"><span class="toc-text">1.9.2 并发和并行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-9-3-计算机系统中抽象的重要性"><span class="toc-text">1.9.3 计算机系统中抽象的重要性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#习题："><span class="toc-text">习题：</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-信息的表示和处理"><span class="toc-text">2 信息的表示和处理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-信息存储"><span class="toc-text">2.1 信息存储</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-1-十六进制表示法"><span class="toc-text">2.1.1 十六进制表示法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-2-字数据大小"><span class="toc-text">2.1.2 字数据大小</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-3-寻址和字节顺序"><span class="toc-text">2.1.3 寻址和字节顺序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-4-表示字符串"><span class="toc-text">2.1.4 表示字符串</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-5-表示代码"><span class="toc-text">2.1.5 表示代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-6-布尔代数简介"><span class="toc-text">2.1.6 布尔代数简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-7-C语言中的位级运算"><span class="toc-text">2.1.7 C语言中的位级运算</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-8-C语言中的逻辑运算"><span class="toc-text">2.1.8 C语言中的逻辑运算</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-9-C语言中的移位运算"><span class="toc-text">2.1.9 C语言中的移位运算</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-整数表示"><span class="toc-text">2.2 整数表示</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-1-整型数据类型"><span class="toc-text">2.2.1 整型数据类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-2-无符号数的编码"><span class="toc-text">2.2.2 无符号数的编码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-3-补码编码（Two’s-complement）"><span class="toc-text">2.2.3 补码编码（Two’s complement）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-4-有符号数和无符号数之间的转换"><span class="toc-text">2.2.4 有符号数和无符号数之间的转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-5-C语言中的有符号数与无符号数"><span class="toc-text">2.2.5 C语言中的有符号数与无符号数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-6-扩展一个数字的位表示"><span class="toc-text">2.2.6 扩展一个数字的位表示</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-7-截断数值"><span class="toc-text">2.2.7 截断数值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-8-关于有符号数与无符号数的建议"><span class="toc-text">2.2.8 关于有符号数与无符号数的建议</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-整数运算"><span class="toc-text">2.3 整数运算</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-1-无符号加法"><span class="toc-text">2.3.1 无符号加法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-2-补码加法"><span class="toc-text">2.3.2 补码加法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-3-补码的非"><span class="toc-text">2.3.3 补码的非</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-4-无符号乘法"><span class="toc-text">2.3.4 无符号乘法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-5-补码乘法"><span class="toc-text">2.3.5 补码乘法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-6-乘以整数"><span class="toc-text">2.3.6 乘以整数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-7-除以2的幂"><span class="toc-text">2.3.7 除以2的幂</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-8-关于整数运算的最后思考"><span class="toc-text">2.3.8 关于整数运算的最后思考</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-4-浮点数"><span class="toc-text">2.4 浮点数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-1-二进制小数"><span class="toc-text">2.4.1 二进制小数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#习题：-1"><span class="toc-text">习题：</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-程序的机器级结构"><span class="toc-text">3 程序的机器级结构</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-处理器体系结构"><span class="toc-text">4 处理器体系结构</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-优化程序性能"><span class="toc-text">5 优化程序性能</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6-存储器层次结构"><span class="toc-text">6 存储器层次结构</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#7-链接"><span class="toc-text">7 链接</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#8-异常控制流"><span class="toc-text">8 异常控制流</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#9-虚拟内存"><span class="toc-text">9 虚拟内存</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#10-系统级I-O"><span class="toc-text">10 系统级I/O</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#11-网络编程"><span class="toc-text">11 网络编程</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#12-并发编程"><span class="toc-text">12 并发编程</span></a></li></ol></div></div><div class="post-content"><p>《深入理解计算机系统》阅读笔记。<br><a id="more"></a></p>
+<h1 id="1-计算机系统漫游"><a href="#1-计算机系统漫游" class="headerlink" title="1 计算机系统漫游"></a>1 计算机系统漫游</h1><h2 id="1-1-信息就是位-上下文"><a href="#1-1-信息就是位-上下文" class="headerlink" title="1.1 信息就是位+上下文"></a>1.1 信息就是位+上下文</h2><p>从一个 Hello World 程序开始。</p>
+<h2 id="1-2-程序被其他程序翻译成不同的格式"><a href="#1-2-程序被其他程序翻译成不同的格式" class="headerlink" title="1.2 程序被其他程序翻译成不同的格式"></a>1.2 程序被其他程序翻译成不同的格式</h2><p><img src="http://static.ifanze.cn/059DE969-4B39-4DD9-90DD-D7A19456C064.jpeg" alt=""></p>
+<h2 id="1-3-了解编译系统如何工作是大有益处的"><a href="#1-3-了解编译系统如何工作是大有益处的" class="headerlink" title="1.3 了解编译系统如何工作是大有益处的"></a>1.3 了解编译系统如何工作是大有益处的</h2><ul>
+<li>优化程序性能。</li>
+<li>理解链接错误。</li>
+<li>避免安全漏洞。</li>
+</ul>
+<h2 id="1-4-处理器读并解释存储在内存中的指令"><a href="#1-4-处理器读并解释存储在内存中的指令" class="headerlink" title="1.4 处理器读并解释存储在内存中的指令"></a>1.4 处理器读并解释存储在内存中的指令</h2><p>shell 是一个命令行解释器。</p>
+<h3 id="1-4-1-系统的硬件组成"><a href="#1-4-1-系统的硬件组成" class="headerlink" title="1.4.1 系统的硬件组成"></a>1.4.1 系统的硬件组成</h3><ol>
+<li><p>总线</p>
+<ul>
+<li>携带信息字节并负责在各个部件间传递。</li>
+<li>通常设计成传送定长的字节块，也就是 <strong>字（word）</strong>。</li>
+<li>大多数机器字长要么是4字节（32位），要么是8字节（64位）。</li>
+</ul>
+</li>
+<li><p>I/O设备</p>
+<ul>
+<li>系统与外部世界的联系通道。</li>
+<li>每个I/O设备都通过 <strong>控制器</strong> 或者 <strong>适配器</strong> 与I/O总线相连。</li>
+<li>控制器是I/O设备本身或者系统的主印制电路板（主板）上的芯片组。</li>
+<li>适配器是一块插在主板上的卡。</li>
+</ul>
+</li>
+<li><p>主存</p>
+<ul>
+<li>临时存储设备，处理器执行程序时，用来存放程序和程序处理的数据。</li>
+<li>物理上，由一组 <strong>动态随机存取存储器（DRAM）</strong> 芯片组成。</li>
+<li>逻辑上，是一个线性的字节数组，每个字节都有唯一的地址（从0开始）。</li>
+</ul>
+</li>
+<li><p>处理器</p>
+<ul>
+<li>CPU，解释（或执行）存储在主存中指令的引擎。</li>
+<li>核心是一个大小为一个字的存储设备（或寄存器），称为 <strong>程序计数器（PC）</strong>。</li>
+<li>任何时刻，PC都指向主存中的某条机器语言指令。</li>
+<li>处理器看上去是按照一个非常简单的指令执行模型来操作的，这个模型是由 <strong>指令集架构</strong> 决定的。</li>
+<li><p>指令所对应的简单操作并不多，它们围绕着 <strong>主存</strong>、<strong>寄存器文件（register file）</strong> 和 <strong>算术/逻辑单元（ALU）</strong> 进行。这些操作包括：</p>
+<ul>
+<li>加载。</li>
+<li>存储。</li>
+<li>操作。</li>
+<li>跳转。</li>
+</ul>
+</li>
+<li><p>现代处理器使用了非常复杂的机制来加速程序的执行。注意区分：</p>
+<ul>
+<li><strong>处理器的指令集架构</strong>：每条机器代码指令的效果。</li>
+<li><strong>处理器的微体系架构</strong>：处理器实际是如何实现的。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="1-4-2-运行Hello程序"><a href="#1-4-2-运行Hello程序" class="headerlink" title="1.4.2 运行Hello程序"></a>1.4.2 运行Hello程序</h3><ol>
+<li>shell将我们输入的<code>./hello</code>逐一读入寄存器，再把它放入内存。</li>
+<li>敲回车时，shell知道我们结束了命令的输入。shell将执行一系列指令来加载可执行的<code>hello</code>文件，将目标文件中的代码和数据从磁盘复制到主存。<ul>
+<li>注：利用 直接存储器存取（DMA）技术，数据可以不通过处理器而字节从磁盘到达主存。</li>
+</ul>
+</li>
+<li>处理器开始执行main中的机器语言指令，这些指令将字符串从主存复制到寄存器文件，再从寄存器文件复制到显示设备，最终显示在屏幕上。</li>
+</ol>
+<h2 id="1-5-高速缓存至关重要"><a href="#1-5-高速缓存至关重要" class="headerlink" title="1.5 高速缓存至关重要"></a>1.5 高速缓存至关重要</h2><ul>
+<li>系统花费了大量时间把信息从一个地方挪到另一个地方。</li>
+<li>根据机械原理，较大存储设备要比较小存储设备运行得慢，快速设备得造价远高于同类的低速设备。</li>
+<li><strong>高速缓存存储器（cache memory）</strong>：作为暂时的集结区域，存放处理器近期可能会需要的信息。分为L1、L2、L3。</li>
+</ul>
+<h2 id="1-6-存储设备形成层次结构"><a href="#1-6-存储设备形成层次结构" class="headerlink" title="1.6 存储设备形成层次结构"></a>1.6 存储设备形成层次结构</h2><p><img src="http://static.ifanze.cn/3DD2FD2F-67B1-4F21-A61B-5C13C9CD3ED5.jpeg" alt=""></p>
+<h2 id="1-7-操作系统管理硬件"><a href="#1-7-操作系统管理硬件" class="headerlink" title="1.7 操作系统管理硬件"></a>1.7 操作系统管理硬件</h2><ul>
+<li>shell 和 hello 程序都没有直接访问键盘、显示器、磁盘、主存等硬件，而是依靠操作系统提供服务。</li>
+<li>操作系统的两个基本功能：<ul>
+<li>防止硬件被失控的应用程序滥用。</li>
+<li>向应用程序提供简单一致的机制来控制复杂而又通常大不相同的低级硬件设备。</li>
+</ul>
+</li>
+<li>操作系统使用以下几个抽象概念来实现这两个基本功能：<ul>
+<li><strong>文件</strong>：对I/O设备的抽象。</li>
+<li><strong>虚拟内存</strong>：对主存和磁盘I/O设备的抽象。</li>
+<li><strong>进程</strong>：对处理器、主存和I/O设备的抽象。</li>
+</ul>
+</li>
+</ul>
+<h3 id="1-7-1-进程"><a href="#1-7-1-进程" class="headerlink" title="1.7.1 进程"></a>1.7.1 进程</h3><ul>
+<li>操作系统为程序提供一种假象，就好像系统上只有这个程序在运行。程序看上去是独占地使用处理器、主存和I/O设备。</li>
+<li><strong>并发运行</strong>：一个进程的指令和另一个进程的指令是交错执行的。</li>
+<li><strong>上下文</strong>：操作系统保持跟踪进程运行所需的所有状态信息。</li>
+<li><strong>上下文切换</strong>：操作系统把处理器的控制权从当前进程转移到某个新进程。它是由内核（kernel）管理的。</li>
+<li><strong>内核</strong>：操作系统代码常驻内存的部分，不是一个独立的进程，时系统管理全部进程所用代码和数据结构的集合。</li>
+<li>当应用程序需要操作系统的某些操作时，比如读写文件，它就执行一条特殊的 <strong>系统调用（system call）</strong> 指令，将控制权传递给内核，内核执行请求并返回应用程序。</li>
+</ul>
+<h3 id="1-7-2-线程"><a href="#1-7-2-线程" class="headerlink" title="1.7.2 线程"></a>1.7.2 线程</h3><ul>
+<li>多线程比多进程更容易共享数据。</li>
+<li>往往比进程更高效。</li>
+</ul>
+<h3 id="1-7-3-虚拟内存"><a href="#1-7-3-虚拟内存" class="headerlink" title="1.7.3 虚拟内存"></a>1.7.3 虚拟内存</h3><ul>
+<li>Linux中，地址空间最上面的区域是保留给操作系统中的代码和数据的。</li>
+</ul>
+<p><img src="http://static.ifanze.cn/6C8172FF-0CB9-42A7-BCD6-9388D1DAEB11.jpeg" alt=""></p>
+<ul>
+<li>区：<ul>
+<li><strong>程序代码和数据</strong>。代码从一个固定地址开始，紧接着C全局变量。是直接按照可执行目标文件的内容初始化的。</li>
+<li><strong>堆</strong>。</li>
+<li><strong>共享库</strong>。</li>
+<li><strong>栈</strong>。</li>
+<li><strong>内核虚拟内存</strong>。为内核保留，不允许应用程序读写或直接调用内核代码定义的函数，必须调用内核来执行这些操作。</li>
+</ul>
+</li>
+</ul>
+<h3 id="1-7-4-文件"><a href="#1-7-4-文件" class="headerlink" title="1.7.4 文件"></a>1.7.4 文件</h3><ul>
+<li>文件就是字节序列。</li>
+<li>每个I/O设备，包括磁盘、键盘、显示器、网络，等可以看成文件。</li>
+</ul>
+<h2 id="1-8-系统之间利用网络通信"><a href="#1-8-系统之间利用网络通信" class="headerlink" title="1.8 系统之间利用网络通信"></a>1.8 系统之间利用网络通信</h2><p><img src="http://static.ifanze.cn/65C98DBF-964A-42AA-AA0D-D99FB6B74B92.jpeg" alt=""></p>
+<h2 id="1-9-重要主题"><a href="#1-9-重要主题" class="headerlink" title="1.9 重要主题"></a>1.9 重要主题</h2><h3 id="1-9-1-Amdahl定律"><a href="#1-9-1-Amdahl定律" class="headerlink" title="1.9.1 Amdahl定律"></a>1.9.1 Amdahl定律</h3><ul>
+<li>思想：当我们对系统的某个部分加速时，其对系统整体性能的影响取决于该部分的重要性和加速程度。</li>
+</ul>
+<blockquote>
+<p>若系统执行某应用程序需要时间为<code>T-old</code>，假设系统某部分所需执行时间与该时间的比例为<code>a</code>，而该部分性能提升比例为<code>k</code>。由此计算加速比：<br><code>S = T-old/T-new = 1 / ((1-a) + a/k)</code></p>
+</blockquote>
+<h3 id="1-9-2-并发和并行"><a href="#1-9-2-并发和并行" class="headerlink" title="1.9.2 并发和并行"></a>1.9.2 并发和并行</h3><ul>
+<li><strong>并发（concurrency）</strong>：同时具有多个活动的系统。</li>
+<li><strong>并行（parallelism）</strong>：用并发来使一个系统运行得更快。</li>
+</ul>
+<p>并行可以用在计算机系统的多个抽象层次上：</p>
+<ol>
+<li><p>线程级并发</p>
+<ul>
+<li>单处理器系统。</li>
+<li>多处理系统。<ul>
+<li>多核处理器。<img src="http://static.ifanze.cn/6CBC7CD7-5628-480C-A7FC-E9F9CF441ACA.jpeg" alt=""></li>
+<li>超线程（hyperthreading），或称同时多线程（simultaneous multi-threading）。允许一个CPU执行多个控制流，它涉及到CPU某些硬件有多个备份，如程序计数器、寄存器文件。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>指令级并行</p>
+<ul>
+<li>早期处理器，执行一条指令需要3~10个时钟周期。</li>
+<li>现在的处理器使用了许多聪明的技巧来同时处理多达100条指令。</li>
+<li><strong>流水线（piplining）</strong>：将执行一条指令所需要的活动划分成不同的步骤，将处理器的硬件组织成一系列的阶段，每个阶段执行一个步骤，这些阶段可以并行地操作。</li>
+<li>如果处理器可以达到比一个周期一条指令更快地执行速率，就称之为 <strong>超标量（super-scalar）处理器</strong>。</li>
+</ul>
+</li>
+<li><p>单指令、多数据并行（SIMD并行）</p>
+<ul>
+<li>在最低层次上，许多现代处理器拥有特殊地硬件，允许一条指令产生多个可以并行执行地操作。</li>
+<li>可以提高对影像、声音、视频数据地处理效率。</li>
+<li>有些编译器会试图从C程序中自动抽取SIMD并行性，但更好地方法是用编译器支持地特殊向量数据类型来写程序。</li>
+</ul>
+</li>
+</ol>
+<h3 id="1-9-3-计算机系统中抽象的重要性"><a href="#1-9-3-计算机系统中抽象的重要性" class="headerlink" title="1.9.3 计算机系统中抽象的重要性"></a>1.9.3 计算机系统中抽象的重要性</h3><ul>
+<li>再增加一个抽象：虚拟机，是对整个计算机的抽象，包括操作系统、处理器和程序。</li>
+</ul>
+<h2 id="习题："><a href="#习题：" class="headerlink" title="习题："></a>习题：</h2><ul>
+<li style="list-style: none"><input type="checkbox" checked></input> 1.1 Amdahl定律公式的应用</li>
+<li style="list-style: none"><input type="checkbox" checked></input> 1.2 Amdahl定律公式的应用</li>
+</ul>
+<h1 id="2-信息的表示和处理"><a href="#2-信息的表示和处理" class="headerlink" title="2 信息的表示和处理"></a>2 信息的表示和处理</h1><h2 id="2-1-信息存储"><a href="#2-1-信息存储" class="headerlink" title="2.1 信息存储"></a>2.1 信息存储</h2><ul>
+<li><strong>字节（byte）</strong>：最小的可寻址的内存单位。</li>
+</ul>
+<h3 id="2-1-1-十六进制表示法"><a href="#2-1-1-十六进制表示法" class="headerlink" title="2.1.1 十六进制表示法"></a>2.1.1 十六进制表示法</h3><ul>
+<li>二进制、十进制、十六进制间的相互转化。</li>
+</ul>
+<h3 id="2-1-2-字数据大小"><a href="#2-1-2-字数据大小" class="headerlink" title="2.1.2 字数据大小"></a>2.1.2 字数据大小</h3><ul>
+<li>每台计算机都有一个 <strong>字长（word size）</strong>，指明指针数据的标称大小（nominal size)。</li>
+<li>虚拟地址是以这样的一个字来编码的，所有字长决定了虚拟地址空间的最大大小（<code>0 ~ 2^w-1</code>）。</li>
+<li>32位字长：4GB。</li>
+<li>64位字长：16EB。</li>
+<li>32位程序和64位程序的区别在于如何编译的，大多数64位机器也可运行32位机器编译的程序（向后兼容）。</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> gcc -m32 prog.c</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> gcc -m64 prog.c</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>C语言中：<ul>
+<li>即使是64位系统编译，<code>int</code>通常也只有4字节。</li>
+<li>C语言中，<code>long</code>在32位程序中为4字节，在64位程序中为8字节。</li>
+<li>ISO C99 引入了确定大小的数据类型：<code>int32_t</code>、<code>int64_t</code>。</li>
+<li>除非有<code>unsigned</code>，类型默认是有符号的，<code>char</code>是个例外，C标准不保证这一点。</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-1-3-寻址和字节顺序"><a href="#2-1-3-寻址和字节顺序" class="headerlink" title="2.1.3 寻址和字节顺序"></a>2.1.3 寻址和字节顺序</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a = <span class="number">0x01234567</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//                0x100   0x101   0x102   0x103</span></span><br><span class="line"><span class="comment">//大端法    ...     01      23      45      67      ...</span></span><br><span class="line"><span class="comment">//小端法    ...     67      45      23      01      ...</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>字节顺序很重要的场合：</p>
+<ul>
+<li>网络应用程序的代码编写必须遵守已建立的关于字节顺序的规则。</li>
+<li>阅读表示整数数据的字节序列时。如反汇编器（disassembler）生成的代码。</li>
+<li>当编写规避正常的类型系统的程序时。如强制类型转换（cast）或使用联合（union）。</li>
+</ul>
+</li>
+<li><p>值相等的整数和浮点数在字节模式上截然不同，不过一般能够通过移位相匹配。</p>
+</li>
+</ul>
+<h3 id="2-1-4-表示字符串"><a href="#2-1-4-表示字符串" class="headerlink" title="2.1.4 表示字符串"></a>2.1.4 表示字符串</h3><ul>
+<li>以<code>0</code>结尾的字符数组。</li>
+<li>使用ASCII码作字符码将在任何系统上得到相同的结果，与字节顺序和字大小规则无关。</li>
+</ul>
+<h3 id="2-1-5-表示代码"><a href="#2-1-5-表示代码" class="headerlink" title="2.1.5 表示代码"></a>2.1.5 表示代码</h3><ul>
+<li>二进制代码很少能在不同机器和操作系统组合之间移植。</li>
+</ul>
+<h3 id="2-1-6-布尔代数简介"><a href="#2-1-6-布尔代数简介" class="headerlink" title="2.1.6 布尔代数简介"></a>2.1.6 布尔代数简介</h3><ul>
+<li><code>~</code></li>
+<li><code>&amp;</code></li>
+<li><code>|</code></li>
+<li><code>^</code></li>
+</ul>
+<h3 id="2-1-7-C语言中的位级运算"><a href="#2-1-7-C语言中的位级运算" class="headerlink" title="2.1.7 C语言中的位级运算"></a>2.1.7 C语言中的位级运算</h3><ul>
+<li><code>~</code></li>
+<li><code>&amp;</code></li>
+<li><code>|</code></li>
+<li><code>^</code></li>
+</ul>
+<h3 id="2-1-8-C语言中的逻辑运算"><a href="#2-1-8-C语言中的逻辑运算" class="headerlink" title="2.1.8 C语言中的逻辑运算"></a>2.1.8 C语言中的逻辑运算</h3><ul>
+<li><code>&amp;&amp;</code></li>
+<li><code>||</code></li>
+<li><code>!</code></li>
+</ul>
+<h3 id="2-1-9-C语言中的移位运算"><a href="#2-1-9-C语言中的移位运算" class="headerlink" title="2.1.9 C语言中的移位运算"></a>2.1.9 C语言中的移位运算</h3><ul>
+<li>左移：丢弃最高的k位，在右端补k个0。</li>
+<li>逻辑右移：在左端补k个0。</li>
+<li><p>算术右移：在左端补k个最高有效位的值。</p>
+</li>
+<li><p>C语言标准并未明确定义有符号数使用哪种右移，但几乎所有的编译器/机器都使用算术右移。</p>
+</li>
+<li>如果移动k位，k超过了该数据类型的长度（w位），在许多机器上，将只考虑移位<code>log(2)w</code>位。</li>
+<li>加减运算符优先级比移位运算符高。</li>
+</ul>
+<h2 id="2-2-整数表示"><a href="#2-2-整数表示" class="headerlink" title="2.2 整数表示"></a>2.2 整数表示</h2><h3 id="2-2-1-整型数据类型"><a href="#2-2-1-整型数据类型" class="headerlink" title="2.2.1 整型数据类型"></a>2.2.1 整型数据类型</h3><ul>
+<li>典型的C语言有符号整数的正负值范围是不对称的，负数多1个。</li>
+<li>C语言标准定义的有符号整数类型必须能够表示的最小范围的正负值范围是对称的，除了<code>*32_t</code>、<code>*64_t</code>这种。</li>
+</ul>
+<h3 id="2-2-2-无符号数的编码"><a href="#2-2-2-无符号数的编码" class="headerlink" title="2.2.2 无符号数的编码"></a>2.2.2 无符号数的编码</h3><ul>
+<li>用函数<code>B2U-w</code>表示。</li>
+<li>无符号编码的唯一性：该函数是个双射。</li>
+</ul>
+<h3 id="2-2-3-补码编码（Two’s-complement）"><a href="#2-2-3-补码编码（Two’s-complement）" class="headerlink" title="2.2.3 补码编码（Two’s complement）"></a>2.2.3 补码编码（Two’s complement）</h3><ul>
+<li>用函数<code>B2T-w</code>表示。</li>
+<li>补码编码的唯一性：该函数是个双射。</li>
+</ul>
+<p>有符号数的其他表示方法：</p>
+<ul>
+<li>反码（Ones’ Complement）</li>
+<li>原码（Sign-Magnitude）</li>
+</ul>
+<h3 id="2-2-4-有符号数和无符号数之间的转换"><a href="#2-2-4-有符号数和无符号数之间的转换" class="headerlink" title="2.2.4 有符号数和无符号数之间的转换"></a>2.2.4 有符号数和无符号数之间的转换</h3><ul>
+<li>用函数<code>T2U-w</code>、<code>U2T-w</code>表示。</li>
+<li>对大多数C语言实现，处理同样字长的有符号数和无符号数之间相互转换的一般规则是：数值可能改变，但位模式不变。</li>
+<li>表现在最终数值上：<ul>
+<li>有符号转无符号：正数不变，负数加<code>2^w</code>。</li>
+<li>无符号转有符号：范围内不变，范围外减<code>2^w</code>。</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-2-5-C语言中的有符号数与无符号数"><a href="#2-2-5-C语言中的有符号数与无符号数" class="headerlink" title="2.2.5 C语言中的有符号数与无符号数"></a>2.2.5 C语言中的有符号数与无符号数</h3><ul>
+<li>无符号数添加后缀<code>u</code>。</li>
+<li>显式类型转换。</li>
+<li>隐式类型转换。</li>
+<li>格式化输出。</li>
+<li>运算数的转换：有符号和无符号运算，将转为无符号并假设二者都是非负的。</li>
+<li>C语言中<code>INT_MIN</code>往往定义成<code>-INT_MAX-1</code>。</li>
+</ul>
+<h3 id="2-2-6-扩展一个数字的位表示"><a href="#2-2-6-扩展一个数字的位表示" class="headerlink" title="2.2.6 扩展一个数字的位表示"></a>2.2.6 扩展一个数字的位表示</h3><ul>
+<li>无符号数的零扩展：添加0。</li>
+<li>补码数的符号扩展：添加最高有效位的值。</li>
+<li>如果即需要扩展有需要改变符号，C语言标准要求：先改变大小，再完成符号转换。</li>
+</ul>
+<h3 id="2-2-7-截断数值"><a href="#2-2-7-截断数值" class="headerlink" title="2.2.7 截断数值"></a>2.2.7 截断数值</h3><ul>
+<li>截断无符号数：丢弃高位。新值为<code>x mod 2^k</code>。</li>
+<li>截断补码数值：丢弃高位，重新解释符号位。新值为<code>U2T-k(x mod 2^k)</code></li>
+</ul>
+<h3 id="2-2-8-关于有符号数与无符号数的建议"><a href="#2-2-8-关于有符号数与无符号数的建议" class="headerlink" title="2.2.8 关于有符号数与无符号数的建议"></a>2.2.8 关于有符号数与无符号数的建议</h3><ul>
+<li>可以要求绝不使用无符号数。</li>
+<li>如果仅仅想把数字作为位的集合，无符号数是非常有用的。</li>
+</ul>
+<h2 id="2-3-整数运算"><a href="#2-3-整数运算" class="headerlink" title="2.3 整数运算"></a>2.3 整数运算</h2><h3 id="2-3-1-无符号加法"><a href="#2-3-1-无符号加法" class="headerlink" title="2.3.1 无符号加法"></a>2.3.1 无符号加法</h3><ul>
+<li><code>x+y</code>若溢出，最终结果相当于<code>x+y-2^w</code>。</li>
+<li>判断<code>x+y</code>是否溢出的方法是与<code>x</code>或<code>y</code>进行比较。</li>
+<li>无符号数取反，<code>-x</code>，最终结果相当于<code>2^w-x</code>。（<code>0</code>除外，依然是0）。</li>
+</ul>
+<h3 id="2-3-2-补码加法"><a href="#2-3-2-补码加法" class="headerlink" title="2.3.2 补码加法"></a>2.3.2 补码加法</h3><ul>
+<li><code>x+y</code>若溢出，最终结果相当于<code>x+y-2^w</code>（正溢出）或<code>x+y+2^w</code>（负溢出）。</li>
+<li>当且仅当<code>x&gt;0, y&gt;0, s&lt;=0</code>时，发生了正溢出。</li>
+<li>当且仅当<code>x&lt;0, y&lt;0, s&gt;=0</code>时，发生了负溢出。</li>
+</ul>
+<h3 id="2-3-3-补码的非"><a href="#2-3-3-补码的非" class="headerlink" title="2.3.3 补码的非"></a>2.3.3 补码的非</h3><ul>
+<li><code>-TMin-w</code>还是<code>TMin-W</code>。其他数正常。</li>
+<li>补码非得位级计算方式一：<code>-x</code> -&gt; <code>~x+1</code>。</li>
+<li>补码非得位级计算方式二：找到最右边的1，将它左边的所有位取反。</li>
+</ul>
+<h3 id="2-3-4-无符号乘法"><a href="#2-3-4-无符号乘法" class="headerlink" title="2.3.4 无符号乘法"></a>2.3.4 无符号乘法</h3><ul>
+<li><code>x*y</code>若溢出，最终结果相当于<code>x*y mod 2^w</code>。</li>
+</ul>
+<h3 id="2-3-5-补码乘法"><a href="#2-3-5-补码乘法" class="headerlink" title="2.3.5 补码乘法"></a>2.3.5 补码乘法</h3><ul>
+<li><code>x*y</code>若溢出，最终结果相当于<code>U2T-w(x*y mod 2^w)</code>。</li>
+<li>无符号和补码乘法的位级等价性：同样的位向量，无论是做无符号乘法还是补码乘法，最终结果的位向量都是一样的。</li>
+</ul>
+<h3 id="2-3-6-乘以整数"><a href="#2-3-6-乘以整数" class="headerlink" title="2.3.6 乘以整数"></a>2.3.6 乘以整数</h3><ul>
+<li>乘以2的幂：左移。(无论是无符号还是补码，无论是否溢出)</li>
+<li>C语言编译器会试图用移位和加法替代乘法，如<code>x*14 = (x&lt;&lt;3) + (x&lt;&lt;2) + (x&lt;&lt;1);</code>，因为<code>14 = 2^3 + 2^2 + 2^1</code>，或者<code>x*14 = (x&lt;&lt;4) - (x&lt;&lt;1)</code>，因为<code>14 = 2^4 - 2^1</code>。</li>
+</ul>
+<h3 id="2-3-7-除以2的幂"><a href="#2-3-7-除以2的幂" class="headerlink" title="2.3.7 除以2的幂"></a>2.3.7 除以2的幂</h3><ul>
+<li>整数的除法的结果总是向0舍入，即会向下舍入一个正值，或者向上舍入一个负值。</li>
+<li>无符号：逻辑移位即可，即<code>x / 2^k = x &gt;&gt; k</code>，结果是向下舍入的。</li>
+<li>补码：如果仅仅算术移位，对负数来说结果依然是向下舍入的。因此需要做点偏移：<code>x / 2^k = (x+(1&lt;&lt;k)-1) &gt;&gt; k</code>。</li>
+</ul>
+<h3 id="2-3-8-关于整数运算的最后思考"><a href="#2-3-8-关于整数运算的最后思考" class="headerlink" title="2.3.8 关于整数运算的最后思考"></a>2.3.8 关于整数运算的最后思考</h3><ul>
+<li>计算机的整数运算实际上是一种模运算形式。</li>
+<li>结果运算可能溢出。</li>
+<li>补码提供了一种既能表示整数又能表示负数的灵活方法。</li>
+<li>某些规定和数据类型让程序产生意想不到的行为。</li>
+</ul>
+<h2 id="2-4-浮点数"><a href="#2-4-浮点数" class="headerlink" title="2.4 浮点数"></a>2.4 浮点数</h2><ul>
+<li>IEEE浮点标准。</li>
+</ul>
+<h3 id="2-4-1-二进制小数"><a href="#2-4-1-二进制小数" class="headerlink" title="2.4.1 二进制小数"></a>2.4.1 二进制小数</h3><h2 id="习题：-1"><a href="#习题：-1" class="headerlink" title="习题："></a>习题：</h2><ul>
+<li style="list-style: none"><input type="checkbox" checked></input> 2.1 二进制/十六进制转换。</li>
+<li style="list-style: none"><input type="checkbox" checked></input> 2.2 二进制/十进制/十六进制转换。</li>
+<li style="list-style: none"><input type="checkbox" checked></input> 2.3 二进制/十进制/十六进制转换。</li>
+<li style="list-style: none"><input type="checkbox" checked></input> 2.4 十六进制加减运算。</li>
+<li style="list-style: none"><input type="checkbox" checked></input> 2.5 整数的大小端存储。</li>
+<li style="list-style: none"><input type="checkbox" checked></input> 2.6 值相等的整数和浮点数在字节模式上的比较。</li>
+<li style="list-style: none"><input type="checkbox" checked></input> 2.7 字符串的字节模式。</li>
+<li style="list-style: none"><input type="checkbox" checked></input> 2.8 位向量的布尔运算。</li>
+<li style="list-style: none"><input type="checkbox" checked></input> 2.9 布尔运算与三原色。</li>
+<li style="list-style: none"><input type="checkbox" checked></input> 2.10 使用<code>^</code>实现两数交换。</li>
+<li style="list-style: none"><input type="checkbox" checked></input> 2.11 使用<code>^</code>交换同一地址的值时导致的问题。</li>
+<li style="list-style: none"><input type="checkbox" checked></input> 2.12 使用掩码提取或设置个别位上的状态。</li>
+<li style="list-style: none"><input type="checkbox"></input> 2.13 使用“设置位”、“清除位”操作实现“或”和“异或”运算。</li>
+<li style="list-style: none"><input type="checkbox" checked></input> 2.14 布尔运算和逻辑运算。</li>
+<li style="list-style: none"><input type="checkbox" checked></input> 2.15 只使用位级和逻辑运算实现<code>x==y</code>。</li>
+<li style="list-style: none"><input type="checkbox" checked></input> 2.16 移位运算。</li>
+<li style="list-style: none"><input type="checkbox" checked></input> 2.17 无符号数的编码和补码编码。</li>
+<li style="list-style: none"><input type="checkbox" checked></input> 2.18 十六进制转补码转十进制。</li>
+<li style="list-style: none"><input type="checkbox"></input> 2.19 有符号数转无符号数。</li>
+<li style="list-style: none"><input type="checkbox"></input> 2.20 分析2.19。</li>
+<li style="list-style: none"><input type="checkbox"></input> 2.21 有符号和无符号进行运算。</li>
+<li style="list-style: none"><input type="checkbox"></input> 2.22 验证补码数的符号扩展规则。</li>
+<li style="list-style: none"><input type="checkbox"></input> 2.23 移位和符号转换的综合运用。</li>
+<li style="list-style: none"><input type="checkbox"></input> 2.24 截断数值。</li>
+<li style="list-style: none"><input type="checkbox"></input> 2.25 有符号数和无符号数混用导致的错误。</li>
+<li style="list-style: none"><input type="checkbox"></input> 2.26 有符号数和无符号数混用导致的错误。</li>
+<li style="list-style: none"><input type="checkbox"></input> 2.27 判断两个无符号数相加是否溢出。</li>
+<li style="list-style: none"><input type="checkbox"></input> 2.28 无符号数求反。</li>
+<li style="list-style: none"><input type="checkbox"></input> 2.29 可能溢出的补码加法。</li>
+<li style="list-style: none"><input type="checkbox"></input> 2.30 判断两个补码相加是否溢出。</li>
+<li style="list-style: none"><input type="checkbox"></input> 2.31 判断两个补码相加是否溢出。</li>
+<li style="list-style: none"><input type="checkbox"></input> 2.32 判断两个补码相加是否溢出。</li>
+<li style="list-style: none"><input type="checkbox"></input> 2.33 补码的非。</li>
+<li style="list-style: none"><input type="checkbox"></input> 2.34 无符号乘法和补码乘法。</li>
+<li style="list-style: none"><input type="checkbox"></input> 2.35 判断乘法是否溢出。</li>
+<li style="list-style: none"><input type="checkbox"></input> 2.36 判断乘法是否溢出。</li>
+<li style="list-style: none"><input type="checkbox"></input> 2.37 修复XDR库乘法漏洞。</li>
+<li style="list-style: none"><input type="checkbox"></input> 2.38 移位和加法替代乘法的应用。</li>
+<li style="list-style: none"><input type="checkbox"></input> 2.39 移位和加法替代乘法的应用。</li>
+<li style="list-style: none"><input type="checkbox"></input> 2.40 移位和加法替代乘法的应用。</li>
+<li style="list-style: none"><input type="checkbox"></input> 2.41 移位和加法替代乘法的应用。</li>
+<li style="list-style: none"><input type="checkbox"></input> 2.42 实现一个“除以16”的函数。</li>
+<li style="list-style: none"><input type="checkbox"></input> 2.43 乘除综合练习。</li>
+<li style="list-style: none"><input type="checkbox"></input> 2.44 整数运算综合练习。</li>
+</ul>
+<h1 id="3-程序的机器级结构"><a href="#3-程序的机器级结构" class="headerlink" title="3 程序的机器级结构"></a>3 程序的机器级结构</h1><h1 id="4-处理器体系结构"><a href="#4-处理器体系结构" class="headerlink" title="4 处理器体系结构"></a>4 处理器体系结构</h1><h1 id="5-优化程序性能"><a href="#5-优化程序性能" class="headerlink" title="5 优化程序性能"></a>5 优化程序性能</h1><h1 id="6-存储器层次结构"><a href="#6-存储器层次结构" class="headerlink" title="6 存储器层次结构"></a>6 存储器层次结构</h1><h1 id="7-链接"><a href="#7-链接" class="headerlink" title="7 链接"></a>7 链接</h1><h1 id="8-异常控制流"><a href="#8-异常控制流" class="headerlink" title="8 异常控制流"></a>8 异常控制流</h1><h1 id="9-虚拟内存"><a href="#9-虚拟内存" class="headerlink" title="9 虚拟内存"></a>9 虚拟内存</h1><h1 id="10-系统级I-O"><a href="#10-系统级I-O" class="headerlink" title="10 系统级I/O"></a>10 系统级I/O</h1><h1 id="11-网络编程"><a href="#11-网络编程" class="headerlink" title="11 网络编程"></a>11 网络编程</h1><h1 id="12-并发编程"><a href="#12-并发编程" class="headerlink" title="12 并发编程"></a>12 并发编程</h1></div><div class="tags"><a href="/tags/Linux/">Linux</a></div><div class="post-nav"><a href="/2018/04/16/libevent笔记/" class="next">libevent笔记</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" class="search-form"><input type="text" name="q" maxlength="20" placeholder="Search"/><input type="hidden" name="sitesearch" value="http://ifanze.cn"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/笔记/">笔记</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/docker/" style="font-size: 15px;">docker</a> <a href="/tags/macOS/" style="font-size: 15px;">macOS</a> <a href="/tags/git/" style="font-size: 15px;">git</a> <a href="/tags/homebrew/" style="font-size: 15px;">homebrew</a> <a href="/tags/nodejs/" style="font-size: 15px;">nodejs</a> <a href="/tags/blog/" style="font-size: 15px;">blog</a> <a href="/tags/C/" style="font-size: 15px;">C++</a> <a href="/tags/libevent/" style="font-size: 15px;">libevent</a> <a href="/tags/network/" style="font-size: 15px;">network</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/06/21/《深入理解计算机系统》/">《深入理解计算机系统》</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/16/libevent笔记/">libevent笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/10/《Effective C++》笔记/">《Effective C++》笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/23/Docker-CheatSheet/">Docker CheatSheet</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/23/macOS-CheatSheet/">macOS CheatSheet</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/23/macOS-重装与软件管理/">macOS 重装与软件管理</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="http://www.example1.com/" title="site-name1" target="_blank">site-name1</a><ul></ul><a href="http://www.example2.com/" title="site-name2" target="_blank">site-name2</a><ul></ul><a href="http://www.example3.com/" title="site-name3" target="_blank">site-name3</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2018 <a href="/." rel="nofollow">Meng Fanze's Blog.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a id="rocket" href="#top" class="show"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/3.1.20/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/3.1.20/jquery.fancybox.min.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
