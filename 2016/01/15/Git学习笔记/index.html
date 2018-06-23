@@ -1,0 +1,52 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="孟凡泽的博客"><title>Git 学习笔记 | Meng Fanze's Blog</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/8.0.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">Git 学习笔记</h1><a id="logo" href="/.">Meng Fanze's Blog</a><p class="description">C++、Web、Game</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/timeline/"><i class="fa fa-book"> 历史</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/guestbook/"><i class="fa fa-comments"> 留言</i></a><a href="/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">Git 学习笔记</h1><div class="post-meta">Jan 15, 2016<span> | </span><span class="category"><a href="/categories/笔记/">笔记</a></span></div><a class="disqus-comment-count" href="/2016/01/15/Git学习笔记/#vcomment"><span class="valine-comment-count" data-xid="/2016/01/15/Git学习笔记/"></span><span> 条评论</span></a><div class="clear"><div class="toc-article" id="toc"><div class="toc-title">文章目录</div></div></div><div class="post-content"><p>“廖雪峰的官方网站 - Git教程”的阅读笔记。</p>
+<a id="more"></a>
+<!-- toc -->
+<p>git init</p>
+<p>git add “readme.txt”</p>
+<p>git status</p>
+<p>git commit -m “修正了一个错误”</p>
+<p>git diff</p>
+<p>git checkout – readme.txt  //撤销更改，回到上次git add或者版本库的状态。<br>git reset HEAD readme.txt   //撤销add操作</p>
+<p>git log<br>git log –pretty=oneline</p>
+<p>git reset –hard HEAD^<br>git reset –hard HEAD^^<br>git reset –hard HEAD-100</p>
+<p>git reset –hard 3628164</p>
+<p>git reflog</p>
+<p>git -diff HEAD – readme.txt</p>
+<p>git rm readme.txt<br>git checkout – readme.txt</p>
+<p>// 如果~/.ssh下没有id_rsa和id_rsa.pub两个文件：<br>ssh-keygen -t rsa -C “<a href="mailto:youremail@example.com">youremail@example.com</a>“</p>
+<p>git remote add origin git@server-name:path/repo-name.git<br>git remote          //查看远程仓库名称<br>git remote -v</p>
+<p>// 第一次推送要加上-u来合并本地和远程的master分支。<br>git push -u origin master<br>git push origin master</p>
+<p>git clone <a href="mailto:git@github.com">git@github.com</a>:michaelliao/gitskills.git</p>
+<p>git branch          //查看分支<br>git branch dev      //创建分支<br>git checkout dev    //切换分支<br>git checkout -b dev //创建并切换分支</p>
+<p>git merge dev       //合并分支（Fast-forward方式）<br>git branch -d dev   //删除分支<br>git branch -D dev   //强行删除还未进行合并的分支</p>
+<p>git log –graph –pretty=oneline –abbrev-commit    //显示分支合并图、一行显示、简化版本号</p>
+<p>// 以上都是使用Fast Forward模式，如果关闭：<br>git merge –no-ff -m “merge with no-ff” dev</p>
+<p>git stash<br>git stash list<br>git stash apply     //恢复<br>git stash drop      //删除<br>git stash pop       //恢复并删除<br>git stash apply stash@{0}</p>
+<p>// 拉去远程的分支<br>git checkout -b dev origin/dev</p>
+<p>git pull<br>git branch –set-upstream dev origin/dev</p>
+<p>git tag v1.0<br>git tag v0.9 6224937<br>git show v0.9<br>git tag -a v0.1 -m “version 0.1 released” 3628164<br>git tag -s v0.2 -m “signed version 0.2 released” fec145a    //用PGP签名标签</p>
+<p>git tag -d v0.1                     //本地删除标签<br>git push origin v1.0                //推送标签<br>git push origin –tags              //推送所有标签<br>git push origin :refs/tags/v0.9     //删除远程标签</p>
+<p>git config –global color.ui true<br>git add -f App.class                //强行添加被ignore的文件<br>git check-ignore -v App.class       //查看是哪条ignore语句对该文件起了作用</p>
+<p>git config –global alias.st status<br>git config –global alias.co checkout<br>git config –global alias.ci commit<br>git config –global alias.br branch<br>git config –global alias.unstage ‘reset HEAD’<br>git config –global alias.last ‘log -1’<br>git config –global alias.lg “log –color –graph –pretty=format:’%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset’ –abbrev-commit”</p>
+<p>//搭建Git服务器<br>sudo apt-get install git<br>sudo adduser git<br>收集所有需要登录的用户的公钥，就是他们自己的id_rsa.pub文件，把所有公钥导入到/home/git/.ssh/authorized_keys文件里，一行一个。<br>sudo git init –bare sample.git<br>sudo chown -R git:git sample.git</p>
+<p>//禁止用git用户登录shell<br>vi /etc/passwd<br>把<br>git:x:1001:1001:,,,:/home/git:/bin/bash<br>改为<br>git:x:1001:1001:,,,:/home/git:/usr/bin/git-shell</p>
+<p>git clone git@server:/srv/sample.git</p>
+<p>管理公钥：Gitosis<br>管理权限：Gitolite</p>
+</div><div><ul class="post-copyright"><li class="post-copyright-author"><strong>本文作者：</strong>Meng Fanze</li><li class="post-copyright-link"><strong>本文链接：</strong><a href="/2016/01/15/Git学习笔记/">http://ifanze.cn/2016/01/15/Git学习笔记/</a></li><li class="post-copyright-license"><strong>版权声明：</strong>转载请在评论区说明。</li></ul></div><br><div class="tags"><a href="/tags/Git/">Git</a></div><div class="post-nav"><a class="pre" href="/2016/05/09/Python学习笔记/">Python 学习笔记</a></div><div id="vcomment"></div><script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script><script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script><script>var notify = 'true' == true ? true : false;
+var verify = 'false' == true ? true : false;
+var GUEST_INFO = ['nick','mail','link'];
+var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+  return GUEST_INFO.indexOf(item) > -1
+});
+guest_info = guest_info.length == 0 ? GUEST_INFO :guest_info;
+window.valine = new Valine({
+  el:'#vcomment',
+  notify:notify,
+  verify:verify,
+  appId:'kfIuT7r4gG6hnmNl3uQ5vOqp-gzGzoHsz',
+  appKey:'59tx3uBM3K1Ao4JFH5oE3VEK',
+  placeholder:'Welcome~',
+  avatar:'retro',
+  guest_info:guest_info,
+  pageSize:'10'
+})</script></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank"><input type="text" name="q" maxlength="20" placeholder="Search"/><input type="hidden" name="sitesearch" value="http://ifanze.cn"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/笔记/">笔记</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/读书/">读书</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/C/" style="font-size: 15px;">C++</a> <a href="/tags/docker/" style="font-size: 15px;">docker</a> <a href="/tags/git/" style="font-size: 15px;">git</a> <a href="/tags/homebrew/" style="font-size: 15px;">homebrew</a> <a href="/tags/nodejs/" style="font-size: 15px;">nodejs</a> <a href="/tags/blog/" style="font-size: 15px;">blog</a> <a href="/tags/macOS/" style="font-size: 15px;">macOS</a> <a href="/tags/《C-Primer》/" style="font-size: 15px;">《C++ Primer》</a> <a href="/tags/libevent/" style="font-size: 15px;">libevent</a> <a href="/tags/network/" style="font-size: 15px;">network</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/Python/" style="font-size: 15px;">Python</a> <a href="/tags/Git/" style="font-size: 15px;">Git</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="http://ifanze.cn" title="欢迎友链～" target="_blank">欢迎友链～</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2018 <a href="/." rel="nofollow">Meng Fanze's Blog.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/3.3.5/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/3.3.5/jquery.fancybox.min.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
