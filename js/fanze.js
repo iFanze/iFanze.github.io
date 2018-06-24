@@ -8,12 +8,13 @@ $(document).ready(function () {
     $("#sidebar .widget:last").append('<div class="widget-title"><i class="fa fa-external-link"> 文章目录</i></div>')
     $(".toc-article").clone().appendTo("#sidebar .widget:last")
     $(".clear .toc-article").remove()
+    $(".toc-title").fadeOut()
     $(".toc-title").remove()
     $(".toc-article").css("max-width", "100%")
     $(".toc-article").css("margin", "0")
     $(".toc-article").css("float", "none")
     $(".toc-article").css("border", "none")
-    $(".toc-article").show()
+    $(".toc-article").fadeIn()
 
     var SPACING = 20
     var $toc = $('#sidebar .widget:last')
