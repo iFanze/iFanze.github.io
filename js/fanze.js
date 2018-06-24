@@ -1,4 +1,7 @@
 $(document).ready(function () {
+    if($(".toc-article").html() == undefined)
+        return
+
     // var tochtml = $(".toc-article").html()
     // $("#sidebar").append(tochtml)
     $("#sidebar").append('<div class="widget"></div>')
