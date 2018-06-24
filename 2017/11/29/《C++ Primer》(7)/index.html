@@ -1,0 +1,117 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="孟凡泽的博客"><title>《C++ Primer》读书笔记 7 | Meng Fanze's Blog</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/8.0.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">《C++ Primer》读书笔记 7</h1><a id="logo" href="/.">Meng Fanze's Blog</a><p class="description">C++、Web、Game</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/timeline/"><i class="fa fa-book"> 历史</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/guestbook/"><i class="fa fa-comments"> 留言</i></a><a href="/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">《C++ Primer》读书笔记 7</h1><div class="post-meta">Nov 29, 2017<span> | </span><span class="category"><a href="/categories/《C-Primer》/">《C++ Primer》</a></span></div><a class="disqus-comment-count" href="/2017/11/29/《C++ Primer》(7)/#vcomment"><span class="valine-comment-count" data-xid="/2017/11/29/《C++ Primer》(7)/"></span><span> 条评论</span></a><div class="clear"><div class="toc-article" id="toc"><div class="toc-title">文章目录</div><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#第七章-类"><span class="toc-text">第七章 类</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#7-1-定义抽象数据类型"><span class="toc-text">7.1 定义抽象数据类型</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#7-2-访问控制与封装"><span class="toc-text">7.2 访问控制与封装</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#7-2-1-友元"><span class="toc-text">7.2.1 友元</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#7-3-类的其他特性"><span class="toc-text">7.3 类的其他特性</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#7-3-1-类成员再探"><span class="toc-text">7.3.1 类成员再探</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-3-2-返回-this-的成员函数"><span class="toc-text">7.3.2 返回 *this 的成员函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-3-3-类类型"><span class="toc-text">7.3.3 类类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-3-4-友元再探"><span class="toc-text">7.3.4 友元再探</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#7-4-类的作用域"><span class="toc-text">7.4 类的作用域</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#7-5-类的函数再探"><span class="toc-text">7.5 类的函数再探</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#7-5-1-构造函数初始值列表"><span class="toc-text">7.5.1 构造函数初始值列表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-5-2-委托构造函数"><span class="toc-text">7.5.2 委托构造函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-5-3-默认构造函数的作用"><span class="toc-text">7.5.3 默认构造函数的作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-5-4-隐式的类类型转换"><span class="toc-text">7.5.4 隐式的类类型转换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-5-5-聚合类"><span class="toc-text">7.5.5 聚合类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-5-6-字面值常量类"><span class="toc-text">7.5.6 字面值常量类</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#7-6-类的静态成员"><span class="toc-text">7.6 类的静态成员</span></a></li></ol></div></div><div class="post-content"><p>《C++ Primer》读书笔记 第七章 类</p>
+<a id="more"></a>
+<!-- toc -->
+<h1 id="第七章-类"><a href="#第七章-类" class="headerlink" title="第七章 类"></a>第七章 类</h1><h1 id="7-1-定义抽象数据类型"><a href="#7-1-定义抽象数据类型" class="headerlink" title="7.1 定义抽象数据类型"></a>7.1 定义抽象数据类型</h1><ul>
+<li>成员函数的定义。</li>
+<li>this 指针的理解。</li>
+<li>const 成员函数：意味着 this 是一个指向常量的指针，只能读取它的对象的数据成员，但是不能写入。</li>
+<li>常量对象，以及常量对象的引用或指针都只能调用常量成员函数。</li>
+<li>合成的默认构造函数：<ul>
+<li>如果存在类内的初始值，用它来初始化成员。</li>
+<li>否则，默认初始化该成员。</li>
+<li>只有当类没有声明任何构造函数时，编译器才会自动地生成默认构造函数。</li>
+<li>如果声明了其他构造函数，有需要一个构造函数的默认行为，可以使用<code>= default</code>。</li>
+</ul>
+</li>
+<li>构造函数不应该轻易覆盖掉类内的初始值，除非新值与原值不同。如果你不能使用类内初始值，则所有构造函数都应该显式地初始化每个内置类型的成员。</li>
+</ul>
+<h1 id="7-2-访问控制与封装"><a href="#7-2-访问控制与封装" class="headerlink" title="7.2 访问控制与封装"></a>7.2 访问控制与封装</h1><p>l<br>private 和 public。</p>
+<h2 id="7-2-1-友元"><a href="#7-2-1-友元" class="headerlink" title="7.2.1 友元"></a>7.2.1 友元</h2><h1 id="7-3-类的其他特性"><a href="#7-3-类的其他特性" class="headerlink" title="7.3 类的其他特性"></a>7.3 类的其他特性</h1><h2 id="7-3-1-类成员再探"><a href="#7-3-1-类成员再探" class="headerlink" title="7.3.1 类成员再探"></a>7.3.1 类成员再探</h2><ul>
+<li>定义一个类型成员：使用 typedef 或 using，达到隐藏实现细节的作用。</li>
+<li>可变数据成员：在成员变量的声明前使用<code>mutable</code>修饰，代表它永远不会是 const，即便在 const 函数中也能修改它。</li>
+<li>当我们提供一个类内初始值时，必须以<code>=</code>或者花括号表示。</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Window_mgr</span>&#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    std::vector&lt;Screen&gt; screens&#123;Screen(24, 80, '')&#125;;</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="7-3-2-返回-this-的成员函数"><a href="#7-3-2-返回-this-的成员函数" class="headerlink" title="7.3.2 返回 *this 的成员函数"></a>7.3.2 返回 *this 的成员函数</h2><ul>
+<li>返回值用引用可实现连环调用，但对于返回常量引用的调用来说，这些还不够。</li>
+<li>一种比较好的设计：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">class Screen &#123;</span><br><span class="line">public:</span><br><span class="line">    Screen &amp;display(std::ostream &amp;os)</span><br><span class="line">    &#123;</span><br><span class="line">        do_display(os); </span><br><span class="line">        return *this;</span><br><span class="line">    &#125;</span><br><span class="line">    const Screen &amp;display(std::ostream &amp;os) const</span><br><span class="line">    &#123;</span><br><span class="line">        do_display(os); </span><br><span class="line">        return *this;</span><br><span class="line">    &#125;</span><br><span class="line">private:</span><br><span class="line">    void do_display(std::ostream &amp;os) const</span><br><span class="line">    &#123;</span><br><span class="line">        os &lt;&lt; contents;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="7-3-3-类类型"><a href="#7-3-3-类类型" class="headerlink" title="7.3.3 类类型"></a>7.3.3 类类型</h2><ul>
+<li>类可以做前向声明（forward declaration），在它声明之后定义之前是一个不完全类型（incomplete type），此时不能创建它的对象。</li>
+<li>所以一个类的成员类型不能是它自己，但可以是它的引用或指针。</li>
+</ul>
+<h2 id="7-3-4-友元再探"><a href="#7-3-4-友元再探" class="headerlink" title="7.3.4 友元再探"></a>7.3.4 友元再探</h2><ul>
+<li>可以声明友元类或友元类成员函数。</li>
+<li>友元关系不存在传递性。</li>
+<li>重载函数必须分别声明友元关系。</li>
+<li><p>要想令某个成员函数作为友元，必须严格遵守以下顺序：</p>
+<ol>
+<li>先定义 Window_mgr 类，其中声明 clear 函数，但不能定义它。</li>
+<li>定义 Screen 类，包括对于 clear 的友元声明。</li>
+<li>定义 clear。</li>
+</ol>
+</li>
+<li><p>声明友元函数不代表声明了该函数，该函数依然需要在类的外部进行声明，且在声明后才能被使用。（有的编译器并不强制执行该规则。）</p>
+</li>
+</ul>
+<h1 id="7-4-类的作用域"><a href="#7-4-类的作用域" class="headerlink" title="7.4 类的作用域"></a>7.4 类的作用域</h1><p>名字查找（name lookup）的一般过程：</p>
+<pre><code>1. 在名字所在块中寻找声明，只考虑在名字使用之前出现的声明。
+2. 如果没有找到，继续查找外层作用域。
+3. 如果最终没有找到，程序报错。
+</code></pre><p>对于定义在类内部的成员函数：</p>
+<pre><code>1. 首先，编译成员的声明。
+2. 直到类全部可见后才编译函数体。
+</code></pre><h1 id="7-5-类的函数再探"><a href="#7-5-类的函数再探" class="headerlink" title="7.5 类的函数再探"></a>7.5 类的函数再探</h1><h2 id="7-5-1-构造函数初始值列表"><a href="#7-5-1-构造函数初始值列表" class="headerlink" title="7.5.1 构造函数初始值列表"></a>7.5.1 构造函数初始值列表</h2><ul>
+<li>初始化和构造函数里赋值的区别。</li>
+<li>初始化顺序。</li>
+<li>构造函数的默认实参。</li>
+</ul>
+<h2 id="7-5-2-委托构造函数"><a href="#7-5-2-委托构造函数" class="headerlink" title="7.5.2 委托构造函数"></a>7.5.2 委托构造函数</h2><p>C++11 允许构造函数把活交给别的构造函数干。</p>
+<h2 id="7-5-3-默认构造函数的作用"><a href="#7-5-3-默认构造函数的作用" class="headerlink" title="7.5.3 默认构造函数的作用"></a>7.5.3 默认构造函数的作用</h2><p>使用默认构造函数不要加<code>()</code>，不然是定义了一个函数。</p>
+<h2 id="7-5-4-隐式的类类型转换"><a href="#7-5-4-隐式的类类型转换" class="headerlink" title="7.5.4 隐式的类类型转换"></a>7.5.4 隐式的类类型转换</h2><p>如果构造函数只接受一个实参，则它实际上定义了一种类型的隐式转换机制，有时把它称之为转换构造函数（converting constructor）。</p>
+<p>但是注意，只允许一步类类型转换。如 “xxxx” 转 sring 再转某 class 是非法的。除非显式地使用 <code>string(&quot;xxx&quot;)</code>进行转换。</p>
+<p>想阻止这种转换，可将构造函数声明为<code>explicit</code>。它将只能以直接初始化的形式使用，而且，编译器将不会在自动转换过程中使用该构造函数（不能再使用<code>=</code>将参数类型的对象用于拷贝形式的初始化过程）。</p>
+<p>但依然可以用显式转化实现。如<code>static_cast&lt;Sales_data&gt;(xxx)</code>或<code>Sales_data(xxx)</code>。</p>
+<p>在标准库中：</p>
+<pre><code>- 接受 const char * 的 string 构造函数不是 explicit 的。
+- 接受一个容器参数的 vector 构造函数是 explicit 的。
+</code></pre><h2 id="7-5-5-聚合类"><a href="#7-5-5-聚合类" class="headerlink" title="7.5.5 聚合类"></a>7.5.5 聚合类</h2><p>聚合类（aggregate class）使得用户可以直接访问其成员，并且具有特殊的初始化语法形式。需要满足以下条件：</p>
+<ul>
+<li>所有成员都是 public 的。</li>
+<li>没有定义任何构造函数。</li>
+<li>没有类内初始值。</li>
+<li>没有基类，没有 virtual 函数。</li>
+</ul>
+<p>可以提供一个花括号括起来的成员初始值列表，用它来初始化聚合类数据成员，顺序必须一致。</p>
+<p>这种类缺点也较为明显：</p>
+<ul>
+<li>要求所有成员 public。</li>
+<li>用户决定初始化。</li>
+<li>更改成员后修改代价大。</li>
+</ul>
+<h2 id="7-5-6-字面值常量类"><a href="#7-5-6-字面值常量类" class="headerlink" title="7.5.6 字面值常量类"></a>7.5.6 字面值常量类</h2><p>数据成员都是字面值类型的聚合类是字面值常量类。或者满足以下条件也是：</p>
+<ul>
+<li>数据成员都必须是字面值类型。</li>
+<li>类必须至少含有一个 constexpr 构造函数。</li>
+<li>若数据成员含有初始值，则该值必须是一条常量表达式。如果该成员属于某类类型，初始值必须使用成员自己的 constexpr 构造函数。</li>
+<li>必须使用析构函数的默认定义。</li>
+</ul>
+<h1 id="7-6-类的静态成员"><a href="#7-6-类的静态成员" class="headerlink" title="7.6 类的静态成员"></a>7.6 类的静态成员</h1><ul>
+<li>既可使用类名，也可使用对象访问静态成员。</li>
+<li>在类的外部定义静态成员时，不能重复 static 关键字。</li>
+<li>由于静态成员并不是在创建类的对象时被定义的，所以一般不能在类内进行初始化。（除了返回值是常量表达式的情况。）</li>
+<li>和其他对象一样，一个静态数据成员只能定义一次，最好与其他非内联函数的定义放在同一个文件中。</li>
+<li><p>即使一个常量静态数据成员在类内部被初始化了，通常也应在类的外部定义一下该成员。</p>
+</li>
+<li><p>由于静态成员独立于任何对象，所以有些特性：可以是不完全类型，可以就是它所属类的类型，可以用作默认实参。这些非静态成员都不可以。</p>
+</li>
+</ul>
+</div><div><ul class="post-copyright"><li class="post-copyright-author"><strong>本文作者：</strong>Meng Fanze</li><li class="post-copyright-link"><strong>本文链接：</strong><a href="/2017/11/29/《C++ Primer》(7)/">http://ifanze.cn/2017/11/29/《C++ Primer》(7)/</a></li><li class="post-copyright-license"><strong>版权声明：</strong>转载请在评论区说明。</li></ul></div><br><div class="tags"><a href="/tags/C/">C++</a><a href="/tags/读书/">读书</a></div><div class="post-nav"><a class="pre" href="/2017/12/03/《C++ Primer》(8)/">《C++ Primer》读书笔记 8</a><a class="next" href="/2017/11/26/《C++ Primer》(6)/">《C++ Primer》读书笔记 6</a></div><div id="vcomment"></div><script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script><script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script><script>var notify = 'true' == true ? true : false;
+var verify = 'false' == true ? true : false;
+var GUEST_INFO = ['nick','mail','link'];
+var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+  return GUEST_INFO.indexOf(item) > -1
+});
+guest_info = guest_info.length == 0 ? GUEST_INFO :guest_info;
+window.valine = new Valine({
+  el:'#vcomment',
+  notify:notify,
+  verify:verify,
+  appId:'kfIuT7r4gG6hnmNl3uQ5vOqp-gzGzoHsz',
+  appKey:'59tx3uBM3K1Ao4JFH5oE3VEK',
+  placeholder:'Welcome~',
+  avatar:'retro',
+  guest_info:guest_info,
+  pageSize:'10'
+})</script></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank"><input type="text" name="q" maxlength="20" placeholder="Search"/><input type="hidden" name="sitesearch" value="http://ifanze.cn"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/《C-Primer》/">《C++ Primer》</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/笔记/">笔记</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/coding/" style="font-size: 15px;">coding</a> <a href="/tags/C/" style="font-size: 15px;">C++</a> <a href="/tags/macOS/" style="font-size: 15px;">macOS</a> <a href="/tags/参考/" style="font-size: 15px;">参考</a> <a href="/tags/docker/" style="font-size: 15px;">docker</a> <a href="/tags/读书/" style="font-size: 15px;">读书</a> <a href="/tags/linux/" style="font-size: 15px;">linux</a> <a href="/tags/libevent/" style="font-size: 15px;">libevent</a> <a href="/tags/python/" style="font-size: 15px;">python</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="http://ifanze.cn" title="欢迎友链～" target="_blank">欢迎友链～</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2018 <a href="/." rel="nofollow">Meng Fanze's Blog.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/3.3.5/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/3.3.5/jquery.fancybox.min.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
