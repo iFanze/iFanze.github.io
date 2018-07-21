@@ -1,0 +1,313 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="孟凡泽的博客"><title>LeetCode解题记录 | Meng Fanze's Blog</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/8.0.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">LeetCode解题记录</h1><a id="logo" href="/.">Meng Fanze's Blog</a><p class="description">C++、Web、Game</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/timeline/"><i class="fa fa-book"> 历史</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/guestbook/"><i class="fa fa-comments"> 留言</i></a><a href="/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">LeetCode解题记录</h1><div class="post-meta">Jul 20, 2018<span> | </span><span class="category"><a href="/categories/笔记/">笔记</a></span></div><a class="disqus-comment-count" href="/2018/07/20/LeetCode解题记录/#vcomment"><span class="valine-comment-count" data-xid="/2018/07/20/LeetCode解题记录/"></span><span> 条评论</span></a><div class="clear"><div class="toc-article" id="toc"><div class="toc-title">文章目录</div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Coding-Tips"><span class="toc-text">Coding Tips</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#字符串"><span class="toc-text">字符串</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#位运算"><span class="toc-text">位运算</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#查找表"><span class="toc-text">查找表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#链表"><span class="toc-text">链表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#栈、队列、图"><span class="toc-text">栈、队列、图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二叉树"><span class="toc-text">二叉树</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#递归、回溯"><span class="toc-text">递归、回溯</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#动态规划"><span class="toc-text">动态规划</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#贪心"><span class="toc-text">贪心</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数论"><span class="toc-text">数论</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#线段树"><span class="toc-text">线段树</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Trie"><span class="toc-text">Trie</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#并查集"><span class="toc-text">并查集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#图论"><span class="toc-text">图论</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#随机算法"><span class="toc-text">随机算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数学问题"><span class="toc-text">数学问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据结构设计"><span class="toc-text">数据结构设计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#其他问题"><span class="toc-text">其他问题</span></a></li></ol></div></div><div class="post-content"><p>LeetCode上做过的题。</p>
+<a id="more"></a>
+<!-- toc -->
+<blockquote>
+<p>题库：<a href="https://github.com/liuyubobobo/Play-with-Algorithm-Interview">https://github.com/liuyubobobo/Play-with-Algorithm-Interview</a></p>
+</blockquote>
+<h2 id="Coding-Tips"><a href="#Coding-Tips" class="headerlink" title="Coding Tips"></a>Coding Tips</h2><ul>
+<li><code>stringstream</code>可以用<code>eof()</code>判断是否读到了结尾，但不包括尾部空格。</li>
+</ul>
+<h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h2><p>722.</p>
+<p>792.</p>
+<p>796.</p>
+<p>736.</p>
+<h2 id="位运算"><a href="#位运算" class="headerlink" title="位运算"></a>位运算</h2><ol>
+<li><p>Single Number</p>
+<ul>
+<li><a href="https://leetcode.com/submissions/detail/164809954/">https://leetcode.com/submissions/detail/164809954/</a></li>
+</ul>
+</li>
+</ol>
+<p>389.</p>
+<h2 id="查找表"><a href="#查找表" class="headerlink" title="查找表"></a>查找表</h2><ol>
+<li><p>Intersection of Two Arrays</p>
+<ul>
+<li><a href="https://leetcode.com/submissions/detail/140140222/">https://leetcode.com/submissions/detail/140140222/</a></li>
+<li><a href="https://leetcode.com/submissions/detail/140140384/">https://leetcode.com/submissions/detail/140140384/</a></li>
+<li><a href="https://leetcode.com/submissions/detail/140141226/">https://leetcode.com/submissions/detail/140141226/</a></li>
+<li><a href="https://leetcode.com/submissions/detail/140141342/">https://leetcode.com/submissions/detail/140141342/</a></li>
+</ul>
+</li>
+<li><p>Intersection of Two Arrays II</p>
+<ul>
+<li><a href="https://leetcode.com/submissions/detail/140141952/">https://leetcode.com/submissions/detail/140141952/</a></li>
+</ul>
+</li>
+<li><p>Valid Anagram</p>
+<ul>
+<li><a href="https://leetcode.com/submissions/detail/164812086/">https://leetcode.com/submissions/detail/164812086/</a></li>
+<li><a href="https://leetcode.com/submissions/detail/164812280/">https://leetcode.com/submissions/detail/164812280/</a></li>
+</ul>
+</li>
+<li><p>Happy Number</p>
+<ul>
+<li><a href="https://leetcode.com/submissions/detail/164916918/">https://leetcode.com/submissions/detail/164916918/</a></li>
+</ul>
+</li>
+<li><p>Word Pattern</p>
+<ul>
+<li><a href="https://leetcode.com/submissions/detail/164920615/">https://leetcode.com/submissions/detail/164920615/</a></li>
+</ul>
+</li>
+<li><p>Isomorphic Strings</p>
+<ul>
+<li><a href="https://leetcode.com/submissions/detail/164923185/">https://leetcode.com/submissions/detail/164923185/</a></li>
+</ul>
+</li>
+<li><p><strong>[Medium]</strong> Sort Characters By Frequency</p>
+<ul>
+<li><a href="https://leetcode.com/submissions/detail/164945886/">https://leetcode.com/submissions/detail/164945886/</a></li>
+</ul>
+</li>
+</ol>
+<ol>
+<li><p>Unique Morse Code Words</p>
+<ul>
+<li><a href="https://leetcode.com/submissions/detail/164950488/">https://leetcode.com/submissions/detail/164950488/</a></li>
+</ul>
+</li>
+<li><p>Two Sum</p>
+<ul>
+<li><a href="https://leetcode.com/submissions/detail/59651268/">https://leetcode.com/submissions/detail/59651268/</a></li>
+</ul>
+</li>
+</ol>
+<p>15.</p>
+<p>18.</p>
+<p>16.</p>
+<p>454.</p>
+<p>49.</p>
+<p>697.</p>
+<p>734.</p>
+<p>447.</p>
+<p>149.</p>
+<p>719.</p>
+<p>219.</p>
+<p>217.</p>
+<p>220.</p>
+<p>155.</p>
+<p>716.</p>
+<p>729.</p>
+<p>731.</p>
+<p>855.</p>
+<p>290.</p>
+<p>811.</p>
+<p>819.</p>
+<p>128.</p>
+<h2 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h2><ol>
+<li><p>Reverse Linked List</p>
+<ul>
+<li><a href="https://leetcode.com/submissions/detail/164962749/">https://leetcode.com/submissions/detail/164962749/</a> （递归）</li>
+</ul>
+</li>
+</ol>
+<p>92.</p>
+<p>83.</p>
+<p>86.</p>
+<p>328.</p>
+<p>2.</p>
+<p>445.</p>
+<p>203.</p>
+<p>82.</p>
+<p>21.</p>
+<p>24.</p>
+<p>25.</p>
+<p>147.</p>
+<p>148.</p>
+<p>237.</p>
+<p>19.</p>
+<p>61.</p>
+<p>143.</p>
+<p>234.</p>
+<p>725.</p>
+<p>817.</p>
+<p>141.</p>
+<p>142.</p>
+<p>287.</p>
+<h2 id="栈、队列、图"><a href="#栈、队列、图" class="headerlink" title="栈、队列、图"></a>栈、队列、图</h2><p>20.</p>
+<p>150.</p>
+<p>71.</p>
+<p>735.</p>
+<p>144.</p>
+<p>94.</p>
+<p>145.</p>
+<p>341.</p>
+<p>388.</p>
+<p>102.</p>
+<p>107.</p>
+<p>103.</p>
+<p>199.</p>
+<p>232.</p>
+<p>637.</p>
+<p>279.</p>
+<p>127.</p>
+<p>126.</p>
+<p>675.</p>
+<p>347.</p>
+<p>23.</p>
+<p>692.</p>
+<p>239.</p>
+<p>786.</p>
+<p>857.</p>
+<p>856.</p>
+<p>490.</p>
+<h2 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h2><p>104.</p>
+<p>111.</p>
+<p>226.</p>
+<p>100.</p>
+<p>101.</p>
+<p>222.</p>
+<p>110.</p>
+<p>112.</p>
+<p>111.</p>
+<p>404.</p>
+<p>257.</p>
+<p>113.</p>
+<p>129.</p>
+<p>250.</p>
+<p>437.</p>
+<p>785.</p>
+<p>783.</p>
+<p>235.</p>
+<p>98.</p>
+<p>450.</p>
+<p>108.</p>
+<p>230.</p>
+<p>236.</p>
+<p>530.</p>
+<p>99.</p>
+<p>109.</p>
+<p>105.</p>
+<p>106.</p>
+<p>173.</p>
+<p>863.</p>
+<p>865.</p>
+<p>87.</p>
+<h2 id="递归、回溯"><a href="#递归、回溯" class="headerlink" title="递归、回溯"></a>递归、回溯</h2><p>17.</p>
+<p>690.</p>
+<p>93.</p>
+<p>131.</p>
+<p>797.</p>
+<p>46.</p>
+<p>47.</p>
+<p>784.</p>
+<p>77.</p>
+<p>39.</p>
+<p>40.</p>
+<p>216.</p>
+<p>78.</p>
+<p>90.</p>
+<p>401.</p>
+<p>254.</p>
+<p>79.</p>
+<p>200.</p>
+<p>130.</p>
+<p>417.</p>
+<p>695.</p>
+<p>694.</p>
+<p>733.</p>
+<p>711.</p>
+<p>51.</p>
+<p>52.</p>
+<p>37.</p>
+<p>390.</p>
+<h2 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h2><p>70.</p>
+<p>120.</p>
+<p>64.</p>
+<p>123.</p>
+<p>309.</p>
+<p>714.</p>
+<p>118.</p>
+<p>343.</p>
+<p>279.</p>
+<p>91.</p>
+<p>62.</p>
+<p>63.</p>
+<p>198.</p>
+<p>213.</p>
+<p>337.</p>
+<p>309.</p>
+<p>740.</p>
+<p>115.</p>
+<p>416.</p>
+<p>322.</p>
+<p>377.</p>
+<p>474.</p>
+<p>139.</p>
+<p>494.</p>
+<p>518.</p>
+<p>805.</p>
+<p>300.</p>
+<p>376.</p>
+<p>673.</p>
+<p>583.</p>
+<p>712.</p>
+<p>718.</p>
+<p>698.</p>
+<p>188.</p>
+<p>790.</p>
+<p>600.</p>
+<p>727.</p>
+<p>741.</p>
+<p>788.</p>
+<h2 id="贪心"><a href="#贪心" class="headerlink" title="贪心"></a>贪心</h2><p>455.</p>
+<p>392.</p>
+<p>561.</p>
+<p>435.</p>
+<p>860.</p>
+<p>861.</p>
+<p>765.</p>
+<h2 id="数论"><a href="#数论" class="headerlink" title="数论"></a>数论</h2><p>386.</p>
+<h2 id="线段树"><a href="#线段树" class="headerlink" title="线段树"></a>线段树</h2><p>307.</p>
+<p>370.</p>
+<p>218.</p>
+<p>699.</p>
+<p>715.</p>
+<p>308.</p>
+<h2 id="Trie"><a href="#Trie" class="headerlink" title="Trie"></a>Trie</h2><p>208.</p>
+<p>720.</p>
+<p>676.</p>
+<p>677.</p>
+<p>648.</p>
+<p>211.</p>
+<h2 id="并查集"><a href="#并查集" class="headerlink" title="并查集"></a>并查集</h2><p>737.</p>
+<p>721.</p>
+<p>684.</p>
+<h2 id="图论"><a href="#图论" class="headerlink" title="图论"></a>图论</h2><p>787.</p>
+<p>685.</p>
+<p>765.</p>
+<p>864.</p>
+<h2 id="随机算法"><a href="#随机算法" class="headerlink" title="随机算法"></a>随机算法</h2><p>268.</p>
+<p>382.</p>
+<p>398.</p>
+<p>710.</p>
+<h2 id="数学问题"><a href="#数学问题" class="headerlink" title="数学问题"></a>数学问题</h2><p>319.</p>
+<p>858.</p>
+<h2 id="数据结构设计"><a href="#数据结构设计" class="headerlink" title="数据结构设计"></a>数据结构设计</h2><p>380.</p>
+<p>381.</p>
+<h2 id="其他问题"><a href="#其他问题" class="headerlink" title="其他问题"></a>其他问题</h2><p>391.</p>
+<p>780.</p>
+<p>781.</p>
+<p>789.</p>
+<p>795.</p>
+<p>799.</p>
+<p>866.</p>
+<p>732.</p>
+</div><div><ul class="post-copyright"><li class="post-copyright-author"><strong>本文作者：</strong>Meng Fanze</li><li class="post-copyright-link"><strong>本文链接：</strong><a href="/2018/07/20/LeetCode解题记录/">http://ifanze.cn/2018/07/20/LeetCode解题记录/</a></li><li class="post-copyright-license"><strong>版权声明：</strong>转载请在评论区说明。</li></ul></div><br><div class="tags"><a href="/tags/C/">C++</a><a href="/tags/coding/">coding</a></div><div class="post-nav"><a class="next" href="/2018/06/28/《代码大全2》(9)/">《代码大全2》读书笔记 9</a></div><div id="vcomment"></div><script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script><script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script><script>var notify = 'true' == true ? true : false;
+var verify = 'false' == true ? true : false;
+var GUEST_INFO = ['nick','mail','link'];
+var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+  return GUEST_INFO.indexOf(item) > -1
+});
+guest_info = guest_info.length == 0 ? GUEST_INFO :guest_info;
+window.valine = new Valine({
+  el:'#vcomment',
+  notify:notify,
+  verify:verify,
+  appId:'kfIuT7r4gG6hnmNl3uQ5vOqp-gzGzoHsz',
+  appKey:'59tx3uBM3K1Ao4JFH5oE3VEK',
+  placeholder:'Welcome~',
+  avatar:'retro',
+  guest_info:guest_info,
+  pageSize:'10'
+})</script></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank"><input type="text" name="q" maxlength="20" placeholder="Search"/><input type="hidden" name="sitesearch" value="http://ifanze.cn"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/《C-Primer》/">《C++ Primer》</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/《代码大全2》/">《代码大全2》</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/《深入理解计算机系统》/">《深入理解计算机系统》</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/笔记/">笔记</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/linux/" style="font-size: 15px;">linux</a> <a href="/tags/macOS/" style="font-size: 15px;">macOS</a> <a href="/tags/C/" style="font-size: 15px;">C++</a> <a href="/tags/读书/" style="font-size: 15px;">读书</a> <a href="/tags/参考/" style="font-size: 15px;">参考</a> <a href="/tags/docker/" style="font-size: 15px;">docker</a> <a href="/tags/libevent/" style="font-size: 15px;">libevent</a> <a href="/tags/coding/" style="font-size: 15px;">coding</a> <a href="/tags/python/" style="font-size: 15px;">python</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="http://ifanze.cn" title="欢迎友链～" target="_blank">欢迎友链～</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2018 <a href="/." rel="nofollow">Meng Fanze's Blog.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/3.3.5/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/3.3.5/jquery.fancybox.min.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script><script type="text/javascript" src="/js/fanze.js?v=0.0.0"></script></div></body></html>
